@@ -1,0 +1,69 @@
+:root {
+  --bg: #ffffff;
+  --text-h: #08060d;
+  --text: #4b5563;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --accent: #aa3bff;
+  --code-bg: #f3f4f6;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+body.dark {
+  --bg: #030303;
+  --text-h: #ffffff;
+  --text: #9ca3af;
+  --text-muted: #4b5563;
+  --border: rgba(255, 255, 255, 0.1);
+  --code-bg: #111111;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+}
+
+/* 피파 상자깡(줌인) 섹션을 위한 스타일 */
+.zoom-container {
+  height: 300vh; /* 스크롤 길이를 길게 잡아서 줌 효과를 극대화 */
+  position: relative;
+}
+
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.intro-content {
+  text-align: center;
+  z-index: 10;
+}
+
+h1 { font-size: clamp(3rem, 8vw, 7rem); color: var(--text-h); line-height: 0.9; margin: 0; letter-spacing: -0.04em; }
+
+.skill-tag {
+  font-family: var(--font-mono);
+  background: var(--code-bg);
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+
+.project-row {
+  border-top: 1px solid var(--border);
+  padding: 100px 0;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 60px;
+}
