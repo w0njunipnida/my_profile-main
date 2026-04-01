@@ -87,15 +87,16 @@ const skills = [
   { name: "Java",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
   { name: "Spring",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
   { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
   { name: "React",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Python",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   { name: "Node.js",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "Three.js",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg" },
+  { name: "Python",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  { name: "Three.js",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg", invertLight: true },
   { name: "MySQL",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
   { name: "MariaDB",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" },
-  { name: "Firebase",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" },
-  { name: "GitHub",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { name: "Firebase",   icon: "/firebase.svg" },
+  { name: "GitHub",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", invertLight: true },
+  { name: "Vercel",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg", invertLight: true },
 ];
 
 // ─── THEME CONTEXT ────────────────────────────────────────────────────────────
@@ -255,10 +256,10 @@ function ScrollZoomIntro({ T }) {
           <div style={{display:'flex',flexDirection:'column',gap:'14px'}}>
             <InfoRow label="BORN"      val="2000.08.28"                           T={T}/>
             <InfoRow label="LOCATION"  val="경기 평택"                              T={T}/>
-            <InfoRow label="EDUCATION" val={"진위고 졸업\n한국교통대 기계자동차항공공학부 중퇴"}  T={T}/>
+            <InfoRow label="EDUCATION" val={"진위고 졸업\n한국교통대 기계항공 중퇴"}  T={T}/>
             <div>
               <p style={{margin:'0 0 5px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>CERTIFICATES</p>
-              {['운전면허 1종보통 · 2018.11.03','프로그래밍기능사 · 2026.04.17 예정','컴활 2급 · 취득 예정','TOEIC® Speaking · 취득 예정'].map(c=>(
+              {['운전면허 1종보통 · 2018.11.03','프로그래밍기능사 · 2026.04.17 예정','컴활 2급 · 취득 예정'].map(c=>(
                 <p key={c} style={{margin:'0 0 2px',fontSize:'11px',color:T.textSub,fontFamily:'var(--font-mono)',lineHeight:1.7}}>{c}</p>
               ))}
             </div>
@@ -329,7 +330,7 @@ function About({ T }) {
           3D 시뮬레이션부터 ERP 시스템까지, 기술의 경계를 넓히며 성장하고 있습니다.
         </p>
         <div className="rev" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px'}}>
-          {[{label:'Projects',value:'4+'},{label:'Stacks',value:'12+'},{label:'Location',value:'평택'},{label:'Status',value:'Open'}].map(item=>(
+          {[{label:'Projects',value:'4+'},{label:'Stacks',value:'13+'},{label:'Location',value:'평택'},{label:'Status',value:'Open'}].map(item=>(
             <div key={item.label} style={{border:`1px solid ${T.border}`,borderRadius:'12px',padding:'16px 18px',background:T.bgMuted}}>
               <p style={{margin:'0 0 3px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>{item.label.toUpperCase()}</p>
               <p style={{margin:0,fontSize:'22px',fontWeight:700,color:T.text}}>{item.value}</p>
@@ -368,8 +369,13 @@ function Skills({ T }) {
             }}>
             <img src={s.icon} alt={s.name} style={{
               width:36,height:36,objectFit:'contain',
-              // GitHub 아이콘은 라이트 모드에서 안 보이므로 반전
-              filter: s.name==='GitHub' && T===LIGHT ? 'invert(1)' : 'none'
+              filter: (() => {
+                // 라이트모드: 검정 아이콘(GitHub, Vercel, Three.js) → 짙은 회색으로
+                if (T===LIGHT && s.invertLight) return 'invert(0.15) brightness(0.3)';
+                // 다크모드: 검정 아이콘(GitHub, Vercel, Three.js) → 밝게 반전
+                if (T===DARK && s.invertLight) return 'invert(1) brightness(1.1)';
+                return 'none';
+              })()
             }} onError={e=>{e.target.style.display='none';}}/>
             <span style={{fontSize:'11px',color:T.textSub,fontFamily:'var(--font-mono)',letterSpacing:'0.3px',textAlign:'center'}}>{s.name}</span>
           </div>
