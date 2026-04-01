@@ -76,27 +76,40 @@ const myProjects = [
     period: "2026.03.11 – 04.30",
     duration: "7주 · 280h · 팀",
     role: "Backend Dev",
-    description: "Spring Boot + MyBatis 기반 기업형 물류 관리 ERP. MVC 아키텍처로 재고·입출고 데이터 무결성을 보장. Python 데이터 처리 및 RPA 연동 포함.",
+    description: "Spring Boot + MyBatis 기반 기업형 물류 관리 ERP. FastAPI + Python으로 재무 분석 엔진을 구축하고, Scikit-learn 선형회귀 및 Statsmodels Holt-Winters 시계열 모델로 60일·12개월 매출 AI 예측 기능을 구현했습니다. Samsung Brity RPA 업무 자동화 연동 예정.",
     github: "https://github.com/san123452/ESS_ERP.git",
-    tags: ["Java", "Spring Boot", "MyBatis", "MariaDB", "Python", "Brity RPA"],
+    tags: ["Java", "Spring Boot", "MyBatis", "MariaDB", "Python", "FastAPI", "Pandas", "Scikit-learn", "Statsmodels", "Brity RPA"],
     accent: "#bf5fff", shine: "191,95,255", ongoing: true
   }
 ];
 
 const skills = [
-  { name: "Java",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
-  { name: "Spring",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
-  { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
-  { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
-  { name: "React",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { name: "Node.js",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
-  { name: "Python",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { name: "Three.js",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg", invertLight: true },
-  { name: "MySQL",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
-  { name: "MariaDB",    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" },
-  { name: "Firebase",   icon: "/firebase.svg" },
-  { name: "GitHub",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", invertLight: true },
-  { name: "Vercel",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg", invertLight: true },
+  // Languages
+  { name: "Java",         icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" },
+  { name: "JavaScript",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+  { name: "TypeScript",   icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { name: "Python",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+  // Frameworks & Runtime
+  { name: "Spring",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg" },
+  { name: "FastAPI",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg" },
+  { name: "React",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+  { name: "Node.js",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+  { name: "Three.js",     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/threejs/threejs-original.svg", invertLight: true },
+  // Data & AI
+  { name: "Pandas",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" },
+  { name: "NumPy",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
+  { name: "Scikit-learn", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" },
+  // Database
+  { name: "MySQL",        icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" },
+  { name: "MariaDB",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mariadb/mariadb-original.svg" },
+  // Mobile
+  { name: "Android",      icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg" },
+  // Deploy & Tools
+  { name: "Firebase",     icon: "/firebase.svg" },
+  { name: "GitHub",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg", invertLight: true },
+  { name: "Vercel",       icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg", invertLight: true },
+  // Automation
+  { name: "Brity RPA",    icon: "/samsung-brity-automation-rpa.PNG" },
 ];
 
 // ─── THEME CONTEXT ────────────────────────────────────────────────────────────
@@ -330,7 +343,7 @@ function About({ T }) {
           3D 시뮬레이션부터 ERP 시스템까지, 기술의 경계를 넓히며 성장하고 있습니다.
         </p>
         <div className="rev" style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:'10px'}}>
-          {[{label:'Projects',value:'4+'},{label:'Stacks',value:'13+'},{label:'Location',value:'평택'},{label:'Status',value:'Open'}].map(item=>(
+          {[{label:'Projects',value:'4+'},{label:'Stacks',value:'19+'},{label:'Location',value:'평택'},{label:'Status',value:'Open'}].map(item=>(
             <div key={item.label} style={{border:`1px solid ${T.border}`,borderRadius:'12px',padding:'16px 18px',background:T.bgMuted}}>
               <p style={{margin:'0 0 3px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>{item.label.toUpperCase()}</p>
               <p style={{margin:0,fontSize:'22px',fontWeight:700,color:T.text}}>{item.value}</p>
@@ -367,16 +380,25 @@ function Skills({ T }) {
               e.currentTarget.style.boxShadow='none';
               e.currentTarget.style.transform='translateY(0)';
             }}>
-            <img src={s.icon} alt={s.name} style={{
-              width:36,height:36,objectFit:'contain',
-              filter: (() => {
-                // 라이트모드: 검정 아이콘(GitHub, Vercel, Three.js) → 짙은 회색으로
-                if (T===LIGHT && s.invertLight) return 'invert(0.15) brightness(0.3)';
-                // 다크모드: 검정 아이콘(GitHub, Vercel, Three.js) → 밝게 반전
-                if (T===DARK && s.invertLight) return 'invert(1) brightness(1.1)';
-                return 'none';
-              })()
-            }} onError={e=>{e.target.style.display='none';}}/>
+            {s.icon ? (
+              <img src={s.icon} alt={s.name} style={{
+                width:36,height:36,objectFit:'contain',
+                filter: (() => {
+                  if (T===LIGHT && s.invertLight) return 'invert(0.15) brightness(0.3)';
+                  if (T===DARK  && s.invertLight) return 'invert(1) brightness(1.1)';
+                  return 'none';
+                })()
+              }} onError={e=>{e.target.style.display='none';}}/>
+            ) : (
+              /* devicon 없는 툴은 텍스트 아이콘으로 */
+              <div style={{
+                width:36,height:36,borderRadius:'8px',
+                background:`rgba(157,255,0,0.15)`,
+                border:`1px solid rgba(157,255,0,0.3)`,
+                display:'flex',alignItems:'center',justifyContent:'center',
+                fontSize:'18px'
+              }}>{s.emoji || '🔧'}</div>
+            )}
             <span style={{fontSize:'11px',color:T.textSub,fontFamily:'var(--font-mono)',letterSpacing:'0.3px',textAlign:'center'}}>{s.name}</span>
           </div>
         ))}
