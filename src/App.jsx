@@ -204,71 +204,84 @@ function ScrollZoomIntro({ T }) {
 
         {/* 프로필 카드 */}
         <div ref={cardRef} style={{
-          position:'absolute',zIndex:5,width:'min(720px,90vw)',
-          border:`1px solid ${T.border}`,borderRadius:'20px',
+          position:'absolute',zIndex:5,width:'min(780px,92vw)',
+          border:`1px solid ${T.border}`,borderRadius:'22px',
           background:T.bgCard,
-          boxShadow:`0 24px 64px rgba(0,0,0,${T===LIGHT?'0.10':'0.4'})`,
-          padding:'clamp(24px,4.5vw,48px)',
-          display:'grid',gridTemplateColumns:'1fr 1fr',gap:'24px 32px'
+          boxShadow:`0 24px 80px rgba(0,0,0,${T===LIGHT?'0.12':'0.45'})`,
+          padding:'clamp(20px,4vw,40px)',
+          display:'grid',
+          gridTemplateColumns:'auto 1fr 1fr',
+          gap:'0 clamp(18px,3vw,32px)',
+          alignItems:'start'
         }}>
-          {/* 헤더 */}
-          <div style={{gridColumn:'1 / -1',borderBottom:`1px solid ${T.border}`,paddingBottom:'20px'}}>
-            <p style={{margin:'0 0 8px',fontSize:'10px',letterSpacing:'3px',color:T.textMute}}>PROFILE</p>
-            <div style={{display:'flex',alignItems:'center',gap:'16px',flexWrap:'wrap'}}>
-              <h2 style={{margin:0,fontSize:'clamp(1.6rem,4vw,2.6rem)',fontWeight:800,color:T.text,letterSpacing:'-0.03em',lineHeight:1.15}}>
-                정원준
-              </h2>
-              <span style={{fontSize:'clamp(0.9rem,1.8vw,1.1rem)',color:T.textMute,fontWeight:400,letterSpacing:'0.05em'}}>JEONG WONJUN</span>
-              <span style={{display:'inline-flex',alignItems:'center',gap:'6px',fontSize:'11px',
-                color: T===LIGHT ? T.limeText : T.lime,
-                background: T===LIGHT ? `rgba(157,255,0,0.18)` : `rgba(200,255,0,0.12)`,
-                border:`1px solid ${T===LIGHT?'rgba(100,180,0,0.3)':'rgba(200,255,0,0.25)'}`,
-                padding:'3px 10px',borderRadius:'20px',fontFamily:'var(--font-mono)'}}>
-                <span style={{width:6,height:6,borderRadius:'50%',background:T.lime,display:'inline-block',animation:'blink 1.5s ease-in-out infinite'}}/>
-                OPEN TO WORK
-              </span>
+          {/* 사진 */}
+          <div style={{gridRow:'1 / 3', display:'flex', flexDirection:'column', alignItems:'center', gap:'10px'}}>
+            <div style={{
+              width:'clamp(90px,12vw,130px)',
+              aspectRatio:'3/4',
+              borderRadius:'14px',
+              overflow:'hidden',
+              border:`2px solid ${T.lime}`,
+              flexShrink:0,
+              boxShadow:`0 8px 28px rgba(0,0,0,${T===LIGHT?'0.12':'0.35'})`
+            }}>
+              <img
+                src="/profile.jpg"
+                alt="정원준"
+                style={{width:'100%',height:'100%',objectFit:'cover',objectPosition:'center top'}}
+              />
+            </div>
+            {/* OPEN TO WORK 뱃지 — 사진 아래 */}
+            <span style={{display:'inline-flex',alignItems:'center',gap:'5px',fontSize:'10px',
+              color: T===LIGHT ? T.limeText : T.lime,
+              background: T===LIGHT ? 'rgba(157,255,0,0.18)' : 'rgba(200,255,0,0.1)',
+              border:`1px solid ${T===LIGHT?'rgba(100,180,0,0.28)':'rgba(200,255,0,0.22)'}`,
+              padding:'3px 9px',borderRadius:'20px',fontFamily:'var(--font-mono)',whiteSpace:'nowrap'}}>
+              <span style={{width:5,height:5,borderRadius:'50%',background:T.lime,display:'inline-block',animation:'blink 1.5s ease-in-out infinite'}}/>
+              OPEN TO WORK
+            </span>
+          </div>
+
+          {/* 헤더 — 이름 */}
+          <div style={{gridColumn:'2 / -1',borderBottom:`1px solid ${T.border}`,paddingBottom:'16px',marginBottom:'4px'}}>
+            <p style={{margin:'0 0 6px',fontSize:'10px',letterSpacing:'3px',color:T.textMute}}>PROFILE</p>
+            <div style={{display:'flex',alignItems:'baseline',gap:'12px',flexWrap:'wrap'}}>
+              <h2 style={{margin:0,fontSize:'clamp(1.5rem,3.5vw,2.4rem)',fontWeight:800,color:T.text,letterSpacing:'-0.03em',lineHeight:1.15}}>정원준</h2>
+              <span style={{fontSize:'clamp(0.8rem,1.5vw,1rem)',color:T.textMute,fontWeight:400,letterSpacing:'0.06em'}}>JEONG WONJUN</span>
             </div>
           </div>
 
-          {/* 왼쪽 */}
-          <div style={{display:'flex',flexDirection:'column',gap:'16px'}}>
-            <InfoRow label="BORN"     val="2000.08.28"                          T={T}/>
-            <InfoRow label="LOCATION" val="경기 평택"                             T={T}/>
-            <InfoRow label="EDUCATION" val={"진위고 졸업\n한국교통대 기계항공 중퇴"} T={T}/>
+          {/* 왼쪽 정보 */}
+          <div style={{display:'flex',flexDirection:'column',gap:'14px'}}>
+            <InfoRow label="BORN"      val="2000.08.28"                           T={T}/>
+            <InfoRow label="LOCATION"  val="경기 평택"                              T={T}/>
+            <InfoRow label="EDUCATION" val={"진위고 졸업\n한국교통대 기계자동차항공공학부 중퇴"}  T={T}/>
             <div>
               <p style={{margin:'0 0 5px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>CERTIFICATES</p>
-              <div style={{display:'flex',flexDirection:'column',gap:'3px'}}>
-                {[
-                  '운전면허 1종보통 · 2018.11.03',
-                  '프로그래밍기능사 · 2026.04.17 예정',
-                  '컴활 2급 · 취득 예정',
-                ].map(c=>(
-                  <p key={c} style={{margin:0,fontSize:'12px',color:T.textSub,fontFamily:'var(--font-mono)',lineHeight:1.7}}>{c}</p>
-                ))}
-              </div>
+              {['운전면허 1종보통 · 2018.11.03','프로그래밍기능사 · 2026.04.17 예정','컴활 2급 · 취득 예정','TOEIC® Speaking · 취득 예정'].map(c=>(
+                <p key={c} style={{margin:'0 0 2px',fontSize:'11px',color:T.textSub,fontFamily:'var(--font-mono)',lineHeight:1.7}}>{c}</p>
+              ))}
             </div>
           </div>
 
-          {/* 오른쪽 */}
-          <div style={{display:'flex',flexDirection:'column',gap:'16px'}}>
+          {/* 오른쪽 정보 */}
+          <div style={{display:'flex',flexDirection:'column',gap:'14px'}}>
             <div>
               <p style={{margin:'0 0 6px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>ROLE</p>
-              <div style={{display:'flex',flexWrap:'wrap',gap:'6px'}}>
+              <div style={{display:'flex',flexWrap:'wrap',gap:'5px'}}>
                 {['Full-Stack','Front-End','Back-End','ERP','Samsung Brity RPA'].map(r=>(
-                  <span key={r} style={{
-                    fontSize:'11px',padding:'3px 9px',borderRadius:'5px',
-                    background:`rgba(157,255,0,0.12)`,
-                    color: T===LIGHT ? T.limeText : '#6aaa00',
-                    border:`1px solid rgba(100,180,0,0.22)`,
-                    fontFamily:'var(--font-mono)',fontWeight:600
-                  }}>{r}</span>
+                  <span key={r} style={{fontSize:'10px',padding:'3px 8px',borderRadius:'5px',
+                    background:'rgba(157,255,0,0.12)',
+                    color: T===LIGHT ? T.limeText : '#7acc00',
+                    border:'1px solid rgba(100,180,0,0.22)',
+                    fontFamily:'var(--font-mono)',fontWeight:600}}>{r}</span>
                 ))}
               </div>
             </div>
             <div>
               <p style={{margin:'0 0 5px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>CONTACT</p>
-              <p style={{margin:'0 0 3px',fontSize:'13px',color:T.textSub,fontFamily:'var(--font-mono)'}}>xpbpq9981@gmail.com</p>
-              <p style={{margin:0,fontSize:'13px',color:T.textSub,fontFamily:'var(--font-mono)'}}>+82 010-3147-4751</p>
+              <p style={{margin:'0 0 2px',fontSize:'12px',color:T.textSub,fontFamily:'var(--font-mono)'}}>xpbpq9981@gmail.com</p>
+              <p style={{margin:0,fontSize:'12px',color:T.textSub,fontFamily:'var(--font-mono)'}}>+82 010-3147-4751</p>
             </div>
           </div>
         </div>
