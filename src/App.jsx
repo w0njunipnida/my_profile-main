@@ -467,7 +467,7 @@ function ProfileCard({T,cardRef}) {
         ))}
         <div>
           <p style={{margin:'0 0 5px',fontSize:'9px',letterSpacing:'2px',color:T.textMute}}>CERTIFICATES</p>
-          {['운전면허 1종보통 · 취득','프로그래밍기능사 · 취득'].map(c=>(
+          {['운전면허 1종보통','프로그래밍기능사','컴퓨터활용능력 2급'].map(c=>(
             <p key={c} style={{margin:'0 0 2px',fontSize:'11px',color:T.textSub,fontFamily:'var(--font-mono)',lineHeight:1.7}}>{c}</p>
           ))}
         </div>
